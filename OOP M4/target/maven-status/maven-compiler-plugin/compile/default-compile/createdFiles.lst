@@ -1,0 +1,17 @@
+com\sg\model\VendableItem.class
+com\sg\view\UserIO.class
+com\sg\dao\Dao.class
+com\sg\controller\Controller.class
+com\sg\model\Denomination.class
+com\sg\advice\LoggingAdvice.class
+com\sg\controller\BalanceInMachine.class
+com\sg\service\Service.class
+com\sg\view\UserIOConsoleImpl.class
+com\sg\dao\DaoFileImpl.class
+com\sg\dao\PersistanceException.class
+com\sg\service\ServiceFileImpl.class
+com\sg\view\View.class
+com\sg\App.class
+com\sg\model\Change.class
+com\sg\service\InsufficentFundsException.class
+com\sg\service\NoItemInventoryException.class

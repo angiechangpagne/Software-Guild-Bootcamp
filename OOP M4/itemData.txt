@@ -1,0 +1,6 @@
+Coffee::0.75::23
+Coke::0.25::9
+Ethereum::1.00::0
+Lighter::1.75::2
+Yeezys::2000.00::0
+

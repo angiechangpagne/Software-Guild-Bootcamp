@@ -1,0 +1,4 @@
+2018-02-09T14:37:52.071 : Bag of Crypto: com.sg.service.InsufficentFundsException
+2018-02-09T14:38:35.624 : Lighter : com.sg.service.InsufficentFundsException
+2018-02-09T14:38:39.006 : Cigarettes : com.sg.service.InsufficentFundsException
+2018-02-12T10:02:07.177 : Tesla : com.sg.service.InsufficentFundsException
