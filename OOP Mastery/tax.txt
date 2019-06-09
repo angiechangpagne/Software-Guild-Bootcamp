@@ -1,0 +1,5 @@
+State, TaxRate
+CA::6.25
+NV::6.75
+TX::5.75
+OH::6.00

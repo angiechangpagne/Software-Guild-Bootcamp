@@ -1,0 +1,5 @@
+ProductType, CostPerSquareFoot,CostPerSquareFoot
+Mutual Funds::2.25::2.10
+Investments::1.75::2.10
+Stocks::3.50::4.15
+Bonds::5.15::4.75
