@@ -1,0 +1,6 @@
+Cigarettes::0.25::7
+Coffee::0.75::22
+Lighter::1.00::0
+Matches::1.75::0
+Yeezys::2000.00::0
+
