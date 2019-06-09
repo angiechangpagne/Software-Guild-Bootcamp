@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title th:text="'View ability #' + ${ability.abilityId}">View ability #1</title>
+    <style>
+        #radar {
+            height: 50px;
+        }
+
+        #main {
+            padding-top: 10px;
+        }
+
+        .scroll {
+            height: 150px;
+            overflow: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for spotting humans"> Surveillance Sightings</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/supers">People</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/abilities">abilitys<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-6" id="main">
+            <h2 th:text="${ability.description}">Tweet</h2>
+            <form class="form-horizontal" role="form" novalidate>
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control-plaintext scroll" id="txtDescription" name="description" th:text="${ability.description}" readonly></textarea>
+                    </div>
+                </div>
+               
+            </form>
+            <div class="row">
+                <div class="col-md-8">
+                    <a th:href="@{/ability/edit/{abilityId}(abilityId=${ability.abilityId})}" href="#" class="btn btn-primary" th:title="'Edit ' + ${ability.description}">Edit</a>
+                    <a th:href="@{/ability/delete/{abilityId}(abilityId=${ability.abilityId})}" onclick="return confirm('Are you sure you would like to delete this')" class="btn btn-danger" th:title="'Delete ' + ${ability.name}">Delete</a>
+                    <a href="/abilityies" class="btn btn-info">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+            <p></p>
+            <p>Images provided by Underground. <a href="https://laguardiatechhire.wordpress.com/">© 1984</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

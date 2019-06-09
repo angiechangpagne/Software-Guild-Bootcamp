@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<htmllang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+        <!--required meta tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+         <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+        <title>Human Surveillance</title>
+        <style>
+            #radar {
+                height: 66px;
+            }
+    
+            #about {
+                padding-top: 17px;
+            }
+    
+        </style>
+    </head>
+
+<body>
+        <div class="container">
+                <div class="row m-4">
+                        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+                        <div class="col text-center border border-dark"> 
+                        </div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col text-center border border-dark">
+                            <h1><a href="index" >Surveillance Database</a></h1>
+                        </div>
+                    </div>
+                    <div class="row m-4 border border-dark">
+                        <div class="col text-center m-3">
+                            <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                        </div>
+                        <div class="col text-center m-3">
+                            <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+                        </div>
+                        <div class="col text-center m-3">
+                            <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                        </div>
+                        <div class="col text-center m-3">
+                                <a href="abilities" class="btn btn-outline-primary btn-lg">Abilities</a>
+                            </div>
+                            <div class="col text-center m-3">
+                                    <a href="supers" class="btn btn-outline-primary btn-lg">Humans</a>
+                                </div>
+                        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary"></nav>
+                    </nav>
+
+                    <div class="row m-4 border border-dark">
+                        <div class="col-3 text-center m-3">
+                            <span class="h3">Ability</span>
+                        </div>
+                        <div class="col-7 text-center m-3">
+                            <form action="editAbility" method="POST">
+                                <div class="form-group row">
+                                    <label for="name" class="col-3 col-form-label">
+                                        Name</label>
+                                    <div class="col-9">
+                                        <input type="text" name="name" 
+                                               id="name" class="form-control" th:value="${p.name}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="description" class="col-3 col-form-label">
+                                        Description</label>
+                                    <div class="col-9">
+                                        <input type="text" name="description" 
+                                               id="description" class="form-control" th:value="${p.description}"/>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="abilityId" th:value="${p.abilityId}" />
+                                
+                                <input type="hidden" 
+                                       th:name="${_csrf.parameterName}" 
+                                       th:value="${_csrf.token}"/>
+                                <button type="submit" class="btn btn-danger">Update Ability</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row m-4 border border-dark">
+                        <div class="col text-center m-3">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="p : ${abilities}">
+                                        <td th:text="${p.abilityId}">ID</td>
+                                        <td th:text="${p.name}">Ability name</td>
+                                        <td th:text="${p.description}">Description</td>
+                                        <input type="hidden" 
+                                               th:name="${_csrf.parameterName}" 
+                                               th:value="${_csrf.token}"/>
+                                        <td><a href="#" th:href="@{/editAbility(abilityId=${p.abilityId})}">Edit</a></td>
+                                        <input type="hidden" 
+                                               th:name="${_csrf.parameterName}" 
+                                               th:value="${_csrf.token}"/>
+                                        <td><a href="#" th:href="@{/deleteAbility(AbilityId=${p.abilityId})}">Delete</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+
+
+
+                <!--
+                        <div class="row m-4">
+                            <div class="col text-center border border-dark">
+                                <h1><a href="/" class="text-dark">Human Surveillance</a></h1>
+                            </div>
+                        </div>
+                        <div class="row m-4 border border-dark">
+                            <div class="col-3 text-center m-3">
+                                <span class="h3">Ability</span>
+                            </div>
+                            <div class="col-7 text-center m-3">
+                                <form action="editAbility" method="POST">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-3 col-form-label">
+                                            Ability</label>
+                                        <div class="col-9">
+                                            <input type="text" name="name" id="name" 
+                                                   class="form-control" th:value="${ability.name}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="description" class="col-3 col-form-label">
+                                            Description</label>
+                                        <div class="col-9">
+                                            <input type="text" name="description" id="description" 
+                                                   class="form-control"  th:value="${ability.description}"/>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="abilityId" th:value="${ability.id}"/>
+                                    <button type="submit" class="btn btn-primary">
+                                        Update Ability</button>
+                                </form>
+                            </div>
+                        </div>    
+                    -->
+    
+    
+    
+    <!--<div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for spotting supers"> Super Sightings</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/supers">People</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/abilities">abilities<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-6" id="main">
+            <h2>Edit ability</h2>
+            <form class="form-horizontal" role="form" method="POST" novalidate>
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control scroll" id="txtDescription" name="description" th:text="${ability.description}"></textarea>
+                        <span class="text-danger" th:if="${#fields.hasErrors('ability.description')}" th:errors="*{ability.description}">Description error</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtLocationName" class="col-4 control-label">Uncertain Ability:</label>
+                    <div class="col-8" th:if="${ability.description != null}">
+                        <select class="form-control" id="txtLocationName" name="location">
+                                <option value="">Uncertain Ability</option>
+                            </select>
+                    </div>
+                    <div class="col-8" th:if="${ability.description == null}">
+                        <select class="form-control" id="txtLocationName" name="location">
+                                <option selected value="">Undisclosed Location</option>
+                                <option th:each="location: ${allAbilities}"
+                                    th:value="${ability.abilityId}"
+                                    th:text="${ability.description}>
+                                </option>
+                            </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="/abilities" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center">
+        -->
+        
+        
+        
+    </div>
+        <footer id="footer">
+            <hr/>
+            <p></p>
+            <p>Images provided by The Surveillance State. <a href="https://laguardiatechhire.wordpress.com/">© 1984</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

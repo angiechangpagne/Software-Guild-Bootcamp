@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>Add Person</title>
+    <style>
+        #radar {
+            height: 50px;
+        }
+
+        #main {
+            padding-top: 10px;
+        }
+
+        .scroll {
+            height: 150px;
+            overflow: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for surveying huans"> People Sightings</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/supers">People<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/organizations">Organizations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/abilities">Abilities></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-6" id="main">
+            <h2>Add Person</h2>
+            <form role="form" method="POST">
+                <div class="form-group row">
+                    <label for="txtSuperName" class="col-4 control-label">Name:</label>
+                    <div class="col-8">
+                        <input type="text" id="txtSuperName" class="form-control" name="name" th:value="${super.name}">
+                    </div>
+                </div>
+              
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control scroll" id="txtDescription" name="description" th:text="${super.description}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtAbilities" class="col-4 control-label">Abilities:</label>
+                    <div id="txtAbilities" class="col-8 scroll">
+                        <div class="form-check" th:each="ability: ${allAbilities}">
+                            <label class="form-check-label">
+                                <input class="form-check-input" name="checkedAbilityIds" type="checkbox" th:value="${ability.abilityId}">
+                                <span th:text="${ability.name} + ':  ' + ${ability.description}">Astral Projection: Can workout while sleeping</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="/supers" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+            <p>.</p>
+            <p>Images provided by Underground Mafia <a href="https://laguardiatechhire.wordpress.com/">© 1984</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

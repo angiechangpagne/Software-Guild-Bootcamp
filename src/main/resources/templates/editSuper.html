@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>Edit Person</title>
+    <style>
+        #radar {
+            height: 50px;
+        }
+
+        #main {
+            padding-top: 10px;
+        }
+
+        .scroll {
+            height: 150px;
+            overflow: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for surveying humans"> Simiulation Surveillance</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index">HQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/supers">People<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/organizations">Organizations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/abilities">Abilities></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row m-4 border border-dark">
+            <div class="col-3 text-center m-3">
+                <span class="h3">Alter Human AI</span>
+            </div>
+            <div class="col-7 text-center m-3">
+                <form action="editVillain" method="POST">
+                    <div class="form-group row">
+                        <label for="name" class="col-3 col-form-label">
+                            Name</label>
+                        <div class="col-9">
+                            <input type="text" name="name" 
+                                   id="name" class="form-control" th:value="${sv.name}"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="description" class="col-3 col-form-label">
+                            Description</label>
+                        <div class="col-9">
+                            <input type="text" name="description" 
+                                   id="description" class="form-control" th:value="${sv.description}"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="power" class="col-3 col-form-label">
+                            AI Ability</label>
+                        <div class="col-9">
+                            <select id="ability" name="abilityId" class="form-control" >
+                                <option th:each="a : ${abilities}" 
+                                        th:value="${a.abilityId}" 
+                                        th:text="${a.name}"
+                                        th:selected="${sv.ability.abilityId==a.abilityId}">
+                                    Ai Ability</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="organs" class="col-3 col-form-label">
+                            Organizations</label>
+                        <div class="col-9">
+                            <select multiple id="organizations" name="organizationId" 
+                                    class="form-control" >
+                                <option th:each="o : ${organizationss}" 
+                                        th:value="${o.organizationId}" 
+                                        th:text="${o.name}"
+                                        th:selected="${sv.organizationList.contains(o)}">
+                                    Organization</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <input type="hidden" 
+                           th:name="${_csrf.parameterName}" 
+                           th:value="${_csrf.token}"/>
+                    <input type="hidden" name="superId" th:value="${sv.superId}" />
+                    <button type="submit" class="btn btn-danger">Update AI</button>
+                </form>
+            </div>
+        </div>
+        <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>AI Ability</th>
+                            <th>Organizations</th>
+                            <th>Sightings</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sv : ${supers}">
+                            <td th:text="${sv.superId}">AI ID</td>
+                            <td th:text="${sv.name}">AI Name</td>
+                            <td th:text="${sv.description}">Description of AI</td>
+                            <td th:text="${sv.ability}">AI Ability</td>
+                            <input type="hidden" 
+                                   th:name="${_csrf.parameterName}" 
+                                   th:value="${_csrf.token}"/>
+                            <td><a href="#" th:href="@{/editSuper(superId=${sv.superId})}">Edit</a></td>
+                            <input type="hidden" 
+                                   th:name="${_csrf.parameterName}" 
+                                   th:value="${_csrf.token}"/>
+                            <td><a href="#" th:href="@{/deleteSuper(superId=${sv.superId})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+                <div class="row m-4 border border-dark">
+                    <div class="col-3 text-center m-3">
+                        <span class="h3">Edit Super</span>
+                    </div>
+                    <div class="col-7 text-center m-3">
+                        <form action="editSuper" method="POST">
+                            <div class="form-group row">
+                                <label for="name" class="col-3 col-form-label">
+                                    Name</label>
+                                <div class="col-9">
+                                    <input type="text" name="name" id="name" 
+                                           class="form-control" th:value="${super.name}"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="description" class="col-3 col-form-label">
+                                    Description</label>
+                                <div class="col-9">
+                                    <input type="text" name="description" id="description" 
+                                           class="form-control"  th:value="${super.description}"/>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" th:value="${super.superId}"/>
+                            <button type="submit" class="btn btn-primary">Update Human AI</button>
+                        </form>
+                    </div>
+                </div>   
+            -->
+
+
+
+
+        <!--old
+        <div class="col-md-6" id="main">
+            <h2>Edit Human AI</h2>
+            <form class="form-horizontal" role="form" method="POST" novalidate>
+                <div class="form-group row">
+                    <label for="txtSuperName" class="col-4 control-label">Name:</label>
+                    <div class="col-8">
+                        <input type="text" id="txtSuperName" class="form-control" name="name" th:value="${super.name}">
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="txtImage" class="col-4 control-label">Image:</label>
+                    <div class="col-8">
+                        <input type="text" id="txtImage" class="form-control" name="image" th:value="${super.image}">
+                    </div>
+                </div>
+             
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control-plaintext scroll" id="txtDescription" name="description" th:text="${super.description}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtAbilities" class="col-4 control-label">Abilities:</label>
+                    <div id="txtAbilities" class="col-8 scroll">
+                        <div class="form-check" th:each="ability: ${allAbilities}">
+                            <label class="form-check-label">
+                                <input class="form-check-input" name="checkedAbilityIds" type="checkbox" th:value="${ability.abilityId}" th:checked="${super.containsAbility(ability)}">
+                                <span th:text="${ability.name} + ':  ' + ${ability.description}">Astral Projection: Can workout while sleeping</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="/supers" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+        -->
+
+
+
+
+
+
+
+
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+            <p></p>
+            <p>Images provided by Underground Government. <a href="https://laguardiatechhire.wordpress.com/">© 1984 </a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

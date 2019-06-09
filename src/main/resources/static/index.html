@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <title>Human Surveillance</title>
+    <style>
+        #radar {
+            height: 66px;
+        }
+
+        #about {
+            padding-top: 17px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+            <div class="row m-4">
+                    <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+                    <div class="col text-center border border-dark">
+                     
+                    </div>
+                </div>
+                <div class="row m-4 border border-dark">
+                        <div class="col text-center m-3">
+                                <a href="index" class="btn btn-outline-primary btn-lg">HQ</a>
+                            </div>
+                    <div class="col text-center m-3">
+                        <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                    </div>
+                    <div class="col text-center m-3">
+                        <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+                    </div>
+                    <div class="col text-center m-3">
+                        <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                    </div>
+                    <div class="col text-center m-3">
+                            <a href="abilities" class="btn btn-outline-primary btn-lg">Abilities</a>
+                        </div>
+                        <div class="col text-center m-3">
+                                <a href="supers" class="btn btn-outline-primary btn-lg">AIs</a>
+                            </div>
+                    <nav class="row navbar navbar-expand-lg navbar-dark bg-primary"></nav>
+                </nav>
+                </div>
+<!--
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for tracking humans,their behavior"> Humans Surveillance</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/supers">People</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/organizations">Organizations</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/abilities">Abilities></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        -->
+        
+        <div class="row" id="about">
+            <h2>About We</h2>
+            <p class="lead">We are a surveillance organization dedicated to overseeing the movements of humans. This application is designed to assist others in tracking their location and behavior. If you would like to submit a sighting for cash or bitcoin, please visit the <a href="/sightings">sightings page</a>                
+                and include as much information about the encounter as you can. Below are the ten most recent sightings and a map to those coordinates.</p>
+            <p><small>Data collected "for informational purposes" only.  Not meant to be used for unlawful activities...</small></p>
+        </div>
+        <div class="row">
+            <h3>Recent Sightings</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Human</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sighting: ${sightings}">
+                        <td th:text="${sighting.date}">2088-05-01</td>
+                        <td th:text="${sighting.date}">1:30 PM</td>
+                        <td th:text="${sighting.location.latitude}">24.667</td>
+                        <td th:text="${sighting.location.longitude}">-1.591</td>
+                        <td>
+                            <ul th:each="super: ${sighting.supers}">
+                                <li th:text="${super.name}">Kanye West</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+             <p>|
+            </p>
+            <p>Images provided by Underground Govermnent. <a href="https://laguardiatechhire.wordpress.com/">© Cyber Sharks</a></small></p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>

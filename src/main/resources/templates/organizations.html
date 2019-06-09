@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>All Organizations</title>
+    <style>
+        #radar {
+            height: 50px;
+        }
+
+        #main {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for spotting humans"> People Sightings</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index">Underground Base</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="supers">People</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="organizations">Organizations<span>(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="abilities">Abilities></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div>
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add an Organization</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="addOrganization" method="POST">
+                        <div class="form-group row">
+                            <label for="name" class="col-3 col-form-label">
+                                Name</label>
+                            <div class="col-9">
+                                <input type="text" name="name" 
+                                       id="name" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-3 col-form-label">
+                                Description</label>
+                            <div class="col-9">
+                                <input type="text" name="description" 
+                                       id="description" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phoneNum" class="col-3 col-form-label">
+                                Phone number</label>
+                            <div class="col-9">
+                                <input type="text" name="phoneNum" 
+                                       id="phoneNum" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="location" class="col-3 col-form-label">
+                                Location</label>
+                            <div class="col-9">
+                                <select id="location" name="locationId" class="form-control" >
+                                    <option th:each="location : ${locationList}" 
+                                            th:value="${location.locationId}" 
+                                            th:text="${location.name + ' in ' 
+                                            + location.city + ' city.'}">
+                                        Location</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" 
+                               th:name="${_csrf.parameterName}" 
+                               th:value="${_csrf.token}"/>
+                        <button type="submit" class="btn btn-danger">Add Organization</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+
+
+
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Phone number</th>
+                                <th>Details</th>
+                                <th>Edit</th>
+                                
+                                
+                                    <th>Delete</th>
+                                </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="organization : ${organizations}">
+                                <td th:text="${organization.organizationId}"> ID</td>
+                                <td th:text="${organization.name}">Organization Name</td>
+                                <td th:text="${organization.description}">Description of organization</td>
+                                <td th:text="${organization.phoneNumer}">Phone number</td>
+                                <td><a href="#" th:href="@{/organizationView(organizationId=${organization.organizationId})}">Details</a></td>
+                                <input type="hidden" 
+                                       th:name="${_csrf.parameterName}" 
+                                       th:value="${_csrf.token}"/>
+                                <td><a href="#" th:href="@{/editOrganization(organizationId=${organization.organizationId})}">Edit</a></td>
+                                
+                                    <input type="hidden" 
+                                           th:name="${_csrf.parameterName}" 
+                                           th:value="${_csrf.token}"/>
+                                    <td><a href="#" th:href="@{/deleteOrganization(organId=${organ.organizationId})}">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+        <!---
+        <div class="row" id="main">
+            <h2 class="col-10">All Organizations</h2>
+            <div class="col-2 align-self-center">
+                <a href="addOrganiation" class="col-12 btn btn-primary" title="Add an organization.">Add</a>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th colspan="2">Headquarters Coordinates</th>
+                        <th>Members</th>
+                        <th style="width: 15%;">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="organization: ${organizations}">
+                        <td th:text="${organization.name}">Illumination</td>
+                        <td th:text="${organization.description}">Seeking Total Equity.</td>
+                        <td th:text="${organization.location.latitude}">11.23648964</td>
+                        <td th:text="${organization.location.longitude}">-70.56489645</td>
+                        <td>
+                            <ul th:each="super: ${organization.supers}">
+                                <li th:text="${super.name}">Kanye West</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <a th:href="@{/organization/view/{organizationId}(organizationId=${organization.organizationId})}" href="#" class="btn btn-info" th:title="'View ' + ${organization.name}"><i class="far fa-eye"></i></a>
+                            <a th:href="@{/organization/edit/{organizationId}(organizationId=${organization.organizationId})}" href="#" class="btn btn-primary" th:title="'Edit ' + ${organization.name}"><i class="fas fa-pencil-alt"></i></a>
+                            <a th:href="@{/organization/delete/{organizationId}(organizationId=${organization.organizationId})}" onclick="return confirm('Are you sure you would like to delete this?')" class="btn btn-danger" th:title="'Delete ' + ${organization.name}"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+            <p><</p>
+            <p>Images provided by Underground Government <a href="https://laguardiatechhire.wordpress.com/">© 2059 Silicon Sharks LLC</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

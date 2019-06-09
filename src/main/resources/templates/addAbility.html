@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<htmllang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+        <!--required meta tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+         <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+        <title>Human Surveillance</title>
+        <style>
+            #radar {
+                height: 66px;
+            }
+    
+            #about {
+                padding-top: 17px;
+            }
+    
+        </style>
+    </head>
+
+<body>
+<div class="container">
+        <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Ability</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="addAbility" method="POST">
+                        <div class="form-group row">
+                            <label for="name" class="col-3 col-form-label">
+                                Ability</label>
+                            <div class="col-9">
+                                <input type="text" name="name" 
+                                       id="name" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-3 col-form-label">
+                                Description</label>
+                            <div class="col-9">
+                                <input type="text" name="description" 
+                                       id="description" class="form-control"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Ability</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <!--
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for spotting supers"> Super Sightings</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/supers">People</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/abilities">abilities<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/organizations">Organizations></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-6" id="main">
+            <h2>Add ability</h2>
+            <form class="form-horizontal" role="form" method="POST" novalidate>
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Name:</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control scroll" id="txtName" name="name" th:text="${ability.name}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control scroll" id="txtDescription" name="description" th:text="${ability.description}"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="/abilities" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center">
+-->
+
+
+
+
+        <footer id="footer">
+            <hr/>
+            <p><</p>
+            <p>Images provided by Global Surveillance State . <a href="https://laguardiatechhire.wordpress.com/">© 1984</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

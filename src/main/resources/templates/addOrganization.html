@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>Add Organization</title>
+    <style>
+        #radar {
+            height: 50px;
+        }
+
+        #main {
+            padding-top: 10px;
+        }
+
+        .scroll {
+            height: 150px;
+            overflow: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Human Surveillance"> Human Surveillance</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/supers">People</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/organizations">Organizations</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/abilities">Abilities></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-6" id="main">
+            <h2>Add Organization</h2>
+            <form class="form-horizontal" role="form" method="POST">
+                <div class="form-group row">
+                    <label for="txtOrganizationName" class="col-4 control-label">Organization Name:</label>
+                    <div class="col-8">
+                        <input type="text" id="txtOrganizationName" class="form-control" name="name" th:value="${organization.name}">                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control scroll" id="txtDescription" name="description" th:text="${organization.description}"></textarea>
+                        <span class="text-danger" th:if="${#fields.hasErrors('organization.description')}" th:errors="${organization.description}">Description error</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtLocationName" class="col-4 control-label">Headquarters:</label>
+                    <div class="col-8" >
+                        <select class="form-control" id="txtLocationName" name="location">
+                                <option value="">Undisclosed Location</option>
+                                <option th:each="location: ${locations}" 
+                                    th:value="${location.locationId}"
+                                    th:text="${location.name} + ' ' + ${location.latitude} + ', ' + ${location.longitude}">
+                                    Satellite A51 90.149404, -60.232456
+                                </option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="form-group row">
+                    <label for="txtSupers" class="col-4 control-label">Members:</label>
+                    <div class="col-8" >
+                        <select class="form-control"  multiple id="txtSupers" name="superIds">
+                                <option selected value="">Select Supers</option>
+                                <option th:each="super: ${supers}"
+                                    th:value="${super.superId}"
+                                    th:text="${super.name}">
+                                    Satellite A51 90.149404, -70.232456
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="/organizations" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+            <p><</p>
+            <p>Images provided by Global Surveillance State . <a href="https://laguardiatechhire.wordpress.com/">© 1984</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

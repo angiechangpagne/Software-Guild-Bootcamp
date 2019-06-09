@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>Edit Organization</title>
+    <style>
+        #radar {
+            height: 50px;
+        }
+
+        #main {
+            padding-top: 10px;
+        }
+
+        .scroll {
+            height: 150px;
+            overflow: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="row navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/"><img id="radar" src="/icons/radar.svg" alt="Radar for spotting supers"> Super Sightings</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sightings">Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="supers">People</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="organizations">Organizations></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="abilities">Abilities></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row m-4 border border-dark">
+        <div class="col-3 text-center m-3">
+            <span class="h3">Edit Organization</span>
+        </div>
+        <div class="col-7 text-center m-3">
+            <form action="editOrganization" method="POST">
+                <div class="form-group row">
+                    <label for="name" class="col-3 col-form-label">
+                        Name</label>
+                    <div class="col-9">
+                        <input type="text" name="name" 
+                               id="name" class="form-control" th:value="${organization.name}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-3 col-form-label">
+                        Description</label>
+                    <div class="col-9">
+                        <input type="text" name="description" 
+                               id="description" class="form-control" th:value="${organization.description}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phoneNumber" class="col-3 col-form-label">
+                        Phone number</label>
+                    <div class="col-9">
+                        <input type="text" name="phoneNumber" 
+                               id="phoneNumber" class="form-control" th:value="${organization.phoneNumber}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="location" class="col-3 col-form-label">
+                        Location</label>
+                    <div class="col-9">
+                        <select id="location" name="locationId" class="form-control">
+                            <option th:each="l : ${locations}" 
+                                    th:value="${l.locationId}" 
+                                    th:text="${l.name + ' in ' 
+                                    + l.city+' city'}"
+                                    th:selected="${organization.location.locationId==l.locationId}">
+                                Location</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <input type="hidden" 
+                       th:name="${_csrf.parameterName}" 
+                       th:value="${_csrf.token}"/>
+                <input type="hidden" name="organizationId" th:value="${organization.organizationId}"/>
+
+                <button type="submit" class="btn btn-danger">Update Organization</button>
+            </form>
+        </div>
+    </div>
+    <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Phone number</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="organ : ${organs}">
+                        <td th:text="${organization.organId}">ID</td>
+                        <td th:text="${organization.name}">Organization Name</td>
+                        <td th:text="${organization.description}">Description of organization</td>
+                        <td th:text="${organization.phoneNumber}">Phone number</td>
+                        <input type="hidden" 
+                               th:name="${_csrf.parameterName}" 
+                               th:value="${_csrf.token}"/>
+                        <td><a href="#" th:href="@{/editOrganization(organizationId=${organization.organizationId})}">Edit</a></td>
+                        <input type="hidden" 
+                               th:name="${_csrf.parameterName}" 
+                               th:value="${_csrf.token}"/>
+                        <td><a href="#" th:href="@{/deleteOrganization(organizationId=${organization.organizationId})}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+        <!--
+        <div class="col-md-6" id="main">
+            <h2>Edit Organization</h2>
+            <form class="form-horizontal" role="form" method="POST" novalidate>
+                <div class="form-group row">
+                    <label for="txtOrganizationName" class="col-4 control-label">Organization Name:</label>
+                    <div class="col-8">
+                        <input type="text" id="txtOrganizationName" class="form-control" name="name" th:value="${organization.name}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtDescription" class="col-4 control-label">Description:</label>
+                    <div class="col-8">
+                        <textarea class="form-control scroll" id="txtDescription" name="description" th:text="${organization.description}"></textarea>                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtLocationName" class="col-4 control-label">Headquarters:</label>
+                    <div class="col-8" th:if="${organization.location != null}">
+                        <select class="form-control" id="txtLocationName" name="location">
+                                <option value="">Unknown Location</option>
+                                <option th:each="location: ${allLocations}" th:selected="${organization.hasLocation(location)}"
+                                    th:value="${location.locationId}"
+                                    th:text="${location.name} + ' ' + ${location.latitude} + ', ' + ${location.longitude}">
+                                    Area 51 90.149404, -70.232456
+                                </option>
+                            </select>
+                    </div>
+                    <div class="col-8" th:if="${organization.location == null}">
+                        <select class="form-control" id="txtLocationName" name="location">
+                                <option selected value="">Undisclosed Location</option>
+                                <option th:each="location: ${allLocations}"
+                                    th:value="${location.locationId}"
+                                    th:text="${location.name} + ' ' + ${location.latitude} + ', ' + ${location.longitude}">
+                                    Area 51 90.149404, -70.232456
+                                </option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtSupers" class="col-4 control-label">Members:</label>
+                    <div id="txtSupers" class="col-8 scroll">
+                        <div class="form-check" th:each="super: ${allSupers}">
+                            <label class="form-check-label">
+                                    <input class="form-check-input" name="checkedSuperIds" type="checkbox" th:value="${super.superId}" th:checked="${organization.containsSuper(super)}">
+                                    <span th:text="${super.name}">Name</span>
+                                </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="/organizations" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="container text-center">
+        <footer id="footer">
+            <hr/>
+            <p></p>
+            <p>Images provided by the Surveillance State. <a href="https://laguardiatechhire.wordpress.com/">© 1984</a></small></p>
+        </footer>
+    </div>
+</body>
+
+</html>
