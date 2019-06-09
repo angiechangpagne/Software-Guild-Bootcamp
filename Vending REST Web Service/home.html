@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vending Machine Web Service</title>
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="bootstrap.css"
+              rel="stylesheet">-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 style="text-align:center">Vending Machine Web Service</h1>
+    <hr/>
+    <ul class="list-group" id="errorMessages"></ul>
+    <!-- Content -->
+    <div class="row">
+      <!-- Vending Items -->
+      <div class="col-md-8" id="vendingItemsContainer">
+
+      </div>
+      <!-- End Vending Items div -->
+
+      <!-- Controls -->
+      <div class="col-md-4" align="center">
+
+        <!-- Add money for purchase -->
+        <div class="row p-3">
+          <div class="col-sm-12 mt-2">
+            <h3>Total $ In</h3>
+            <br>
+            <input class="form-control form-control-sm w-50" type="text" id="moneyEntered" disabled>
+            <ul class="list-group" id="input1ErrorMessage"></ul>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <div class="col-sm-12 mt-2">
+              <button class="btn btn-outline-success" id="addDollar">Add Dollar</button>
+              <button class="btn btn-outline-success" id="addQuater">Add Quater</button>
+            </div>
+            <div class="col-sm-12 mt-2">
+              <button class="btn btn-outline-success" id="addDime">Add Dime</button>
+              <button class="btn btn-outline-success" id="addNickle">Add Nickle</button>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Purchase & messages -->
+        <div class="row p-3">
+          <div class="col-sm-12">
+            <h3>Messages</h3>
+            <br>
+            <input class="form-control form-control-sm w-75" type="text" id="messagesInput" disabled>
+          </div>
+          <div class="col-sm-12 mt-2">
+            <h5>Item:</h5>
+            <input class="form-control form-control-sm w-50" type="text" id="item" disabled>
+            <ul class="list-group" id="input2ErrorMessage"></ul>
+            <button class="btn btn-outline-success mt-3" id="makePurchase">Make Purchase</button>
+            <button class="btn btn-outline-success mt-3" id="clear">Cancel/Clear</button>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Change -->
+        <div class="row p-3">
+          <div class="col-sm-12">
+            <h3>Change</h3>
+            <br>
+            <input class="form-control form-control-sm w-50" type="text" id="changeReturn" disabled>
+          </div>
+        </div>
+
+      </div>
+      <!-- End Controls div -->
+    </div>
+    <!-- End row div -->
+  </div>
+  <!-- #5: Placed at the end of the document so the pages load faster -->
+  <script src="jquery-2.2.4.min.js"></script>
+  <script src="bootstrap.js"></script>
+  <script src="home.js"></script>
+</body>
+
+</html>

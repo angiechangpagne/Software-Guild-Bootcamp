@@ -1,0 +1,15 @@
+
+.display-borders{
+	padding: 5px;
+	min-height: 40px;
+}
+
+.items {      
+   border: 1px solid black;
+    width: 20%;
+    height: 0;
+    padding-bottom: 25%;
+    padding-top: 5px;
+    margin: 2%;
+    margin-top: 35px;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vending Machine</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="container-fluid" id="vending-area-test">
+            <h1 class="text-center">Vending Machine</h1>
+            <hr/>
+            <ul class="list-group" id="errorMessages"></ul>
+
+            <div class="row" id="vending-item-area">
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item2">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Total $ In</h3>
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="money-total">
+                        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" id="add-dollar-button">Add Dollar</button>    <button type="button" class="btn btn-primary" id="add-quarter-button">Add Quarter</button>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary" id="add-dime-button">Add Dime</button>    <button type="button" class="btn btn-primary" id="add-nickel-button">Add Nickel</button>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item4">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item5">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item6">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Messages</h3>
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="message-box">
+                        </div>
+                    </div>
+                    <h3>Item:</h3> 
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item-id">
+                        
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="purchase-button">Make Purchase</button>
+                    <hr/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item7">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item8">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="item9">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Change</h3>
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="change-returned-amount">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="return-change-button">Change Return</button>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/home.js"></script>
+    </body>
+</html>
